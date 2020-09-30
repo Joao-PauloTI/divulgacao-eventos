@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import { validate } from "class-validator";
-
 import { Evento } from "../entity/Evento";
 
 class EventoController {

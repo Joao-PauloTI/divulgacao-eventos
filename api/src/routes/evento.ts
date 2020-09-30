@@ -26,16 +26,16 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
-router.post("/", upload.single("foto"), EventoController.novoEvento);
+router.post("/", [checkJwt], upload.single("foto"), EventoController.novoEvento);
 
-router.get("/", EventoController.listarEventos);
+router.get("/", [checkJwt], EventoController.listarEventos);
 
-router.get("/:id([0-9]+)", EventoController.buscarEvento);
+router.get("/:id([0-9]+)", [checkJwt], EventoController.buscarEvento);
 
-router.delete("/:id([0-9]+)", EventoController.excluirEvento);
+router.delete("/:id([0-9]+)", [checkJwt], EventoController.excluirEvento);
 
-router.get("/like/:id([0-9]+)", EventoController.acrescentarLike);
+router.get("/like/:id([0-9]+)", [checkJwt], EventoController.acrescentarLike);
 
-router.get("/deslike/:id([0-9]+)", EventoController.acrescentarDeslike);
+router.get("/deslike/:id([0-9]+)", [checkJwt], EventoController.acrescentarDeslike);
 
 export default router;

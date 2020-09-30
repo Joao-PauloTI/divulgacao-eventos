@@ -1,7 +1,7 @@
 {
-  "name": "jwt-express-typeorm",
+  "name": "divulgacao-eventos-api",
   "version": "0.0.1",
-  "description": "Awesome project developed with TypeORM.",
+  "description": "Api do projeto de divulgação de eventos",
   "devDependencies": {
     "ts-node": "3.3.0",
     "@types/node": "^8.0.29",
