@@ -16,17 +16,20 @@ class AuthController {
 		try {
 			usuario = await usuarioRepository.findOneOrFail({ where: { email } });
 		} catch (error) {
-			res.status(401).send();
+			res.status(401).send("Usuário não encontrado!");
+			return;
 		}
 
 		if (!usuario.senhaDescriptografadaEValida(senha)) {
-			res.status(401).send();
+			res.status(401).send("Senha Invalida!");
 			return;
 		}
 
 		const token = jwt.sign({ usuarioId: usuario.id, email: usuario.email }, config.jwtSecret, { expiresIn: "1h" });
 
-		res.send(token);
+		res.setHeader("token", token);
+
+		res.send({ email: usuario.email, nome: usuario.nome, token: token });
 	};
 }
 export default AuthController;

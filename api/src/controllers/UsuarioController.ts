@@ -51,7 +51,7 @@ class UsuarioController {
 			return;
 		}
 
-		res.status(201).send("Usuario criado com sucesso!");
+		res.send("Usuario criado com sucesso!");
 	};
 }
 

@@ -9,15 +9,15 @@ export class Usuario {
 	id: number;
 
 	@Column()
-	@Length(4, 100)
+	@Length(1, 100)
 	email: string;
 
 	@Column()
-	@Length(4, 255)
+	@Length(1, 255)
 	nome: string;
 
 	@Column()
-	@Length(4, 100)
+	@Length(1, 100)
 	senha: string;
 
 	hashSenha() {
