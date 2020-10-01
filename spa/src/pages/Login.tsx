@@ -25,7 +25,7 @@ function Login() {
 				senha: dados.senhaLogin,
 			})
 			.then((res) => {
-				window.localStorage.setItem("usuario", res.data);
+				window.localStorage.setItem("usuario", JSON.stringify(res.data));
 				history.push("/pagina-principal");
 			})
 			.catch((erro) => {
