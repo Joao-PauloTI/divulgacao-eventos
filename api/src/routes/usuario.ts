@@ -10,4 +10,6 @@ router.get("/", UsuarioController.listarUsuarios);
 
 router.get("/:id([0-9]+)", UsuarioController.buscarUsuario);
 
+router.delete("/:id([0-9]+)", UsuarioController.excluirUsuario);
+
 export default router;

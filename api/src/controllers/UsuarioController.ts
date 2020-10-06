@@ -53,6 +53,19 @@ class UsuarioController {
 
 		res.send("Usuario criado com sucesso!");
 	};
+
+	static excluirUsuario = async (req: Request, res: Response) => {
+		const id: number = req.params.id;
+
+		const usuarioRepository = getRepository(Usuario);
+		try {
+			const usuario = await usuarioRepository.findOneOrFail(id);
+			await usuarioRepository.remove(usuario);
+			res.status(200).send("Usuário excluído!");
+		} catch (error) {
+			res.status(404).send("Usuario não encontrado!");
+		}
+	};
 }
 
 export default UsuarioController;

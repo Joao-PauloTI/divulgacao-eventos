@@ -7,7 +7,8 @@ class EventoController {
 	static listarEventos = async (req: Request, res: Response) => {
 		const eventoRepository = getRepository(Evento);
 		const eventos = await eventoRepository.find({
-			select: ["id", "nome", "local", "comentario", "likes", "deslikes", "foto"],
+			select: ["id", "emailUsuario", "nome", "local", "comentario", "likes", "deslikes", "foto"],
+			order: { id: "DESC" },
 		});
 
 		res.send(eventos);
@@ -19,7 +20,7 @@ class EventoController {
 		const eventoRepository = getRepository(Evento);
 		try {
 			const evento = await eventoRepository.findOneOrFail(id, {
-				select: ["id", "nome", "local", "comentario", "likes", "deslikes", "foto"],
+				select: ["id", "emailUsuario", "nome", "local", "comentario", "likes", "deslikes", "foto"],
 			});
 			res.send(evento);
 		} catch (error) {
@@ -28,8 +29,10 @@ class EventoController {
 	};
 
 	static novoEvento = async (req: Request, res: Response) => {
-		let { nome, local, comentario, likes, deslikes, foto } = req.body;
+		console.log(req.body);
+		let { emailUsuario, nome, local, comentario, likes, deslikes, foto } = req.body;
 		let evento = new Evento();
+		evento.emailUsuario = emailUsuario;
 		evento.nome = nome;
 		evento.local = local;
 		evento.comentario = comentario;

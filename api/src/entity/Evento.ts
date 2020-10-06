@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 import { Length } from "class-validator";
 
 @Entity()
@@ -6,6 +6,9 @@ import { Length } from "class-validator";
 export class Evento {
 	@PrimaryGeneratedColumn()
 	id: number;
+
+	@Column()
+	emailUsuario: string;
 
 	@Column()
 	@Length(1, 255)
