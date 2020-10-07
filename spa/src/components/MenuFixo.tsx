@@ -1,7 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 export default function MenuFixo() {
-	let dadosUsuario = JSON.parse(window.localStorage.getItem("usuario")!);
+	const history = useHistory();
+	const logout = () => {
+		window.localStorage.removeItem("usuario");
+		history.push("/");
+	};
+
+	const dadosUsuario = JSON.parse(window.localStorage.getItem("usuario")!);
 
 	return (
 		<div>
@@ -18,9 +25,9 @@ export default function MenuFixo() {
 								<i className="fas fa-user" /> {dadosUsuario.nome}
 							</a>
 							<div className="dropdown-menu bg-dark">
-								<a className="dropdown-item text-white" href="/">
+								<button type="button" className="dropdown-item text-white" onClick={logout}>
 									<i className="fas fa-door-open" /> Sair
-								</a>
+								</button>
 							</div>
 						</li>
 					</ul>

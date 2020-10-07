@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Axios from "axios";
 import MenuFixo from "../components/MenuFixo";
+import { useHistory } from "react-router-dom";
 
 type camposNovoEvento = {
 	nome: string;
@@ -11,12 +12,17 @@ type camposNovoEvento = {
 };
 
 export default function PaginaPrincipal() {
-	const [eventos, setEventos] = useState([]);
+	const history = useHistory();
+	if (!window.localStorage.getItem("usuario")) {
+		history.push("/");
+	}
+
 	const dadosUsuario = JSON.parse(window.localStorage.getItem("usuario")!);
+
+	const [eventos, setEventos] = useState([]);
 
 	const formNovoEvento = useForm<camposNovoEvento>();
 	const novoEvento = (dados: camposNovoEvento) => {
-		console.log(dados.foto[0])
 		Axios.post(
 			"http://localhost:3333/evento/",
 			{
